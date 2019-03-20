@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitSearch</string>
+    <string name="empty_data">Brak danych</string>
+    <string name="refresh_info_dialog">Błąd podczas ładowania listy,\n spróbować ponownie?</string>
+    <string name="refresh">Odśwież</string>
+    <string name="empty">Pusto</string>
+    <string name="search_hint">Wprowadź nazwę repozytorium</string>
+    <string name="sub_title_app_bar">Lista Repozytoriów GitHub</string>
+</resources>

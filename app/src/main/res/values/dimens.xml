@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_sub_text_size">14sp</dimen>
+    <dimen name="toolbar_and_list_margin">10dp</dimen>
+    <dimen name="toolBar_height">56dp</dimen>
+</resources>

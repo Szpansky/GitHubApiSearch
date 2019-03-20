@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GitSearch</string>
+    <string name="empty_data">Empty data</string>
+    <string name="refresh_info_dialog">Error when loading data,\n try again?</string>
+    <string name="refresh">Refresh</string>
+    <string name="empty">empty</string>
+    <string name="search_hint">Enter repository name</string>
+    <string name="sub_title_app_bar">GitHub Repositories List</string>
+</resources>
