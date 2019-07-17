@@ -1,7 +1,7 @@
 package com.apps.szpansky.gitsearch.mainActivity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.apps.szpansky.gitsearch.Constants;
 import com.apps.szpansky.gitsearch.R;

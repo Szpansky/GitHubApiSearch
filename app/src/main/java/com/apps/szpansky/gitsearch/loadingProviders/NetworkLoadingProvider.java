@@ -1,6 +1,6 @@
 package com.apps.szpansky.gitsearch.loadingProviders;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.apps.szpansky.gitsearch.Constants;
 import com.apps.szpansky.gitsearch.dataStructure.Repos;

@@ -1,6 +1,6 @@
 package com.apps.szpansky.gitsearch.mainActivity;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.szpansky.gitsearch.simples.SimpleViewModel;
 

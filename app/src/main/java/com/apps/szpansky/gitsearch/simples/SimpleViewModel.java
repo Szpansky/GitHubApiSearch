@@ -1,9 +1,9 @@
 package com.apps.szpansky.gitsearch.simples;
 
-import android.arch.lifecycle.ViewModel;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.lifecycle.ViewModel;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.apps.szpansky.gitsearch.dataStructure.DataStructure;
 

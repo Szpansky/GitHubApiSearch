@@ -1,7 +1,7 @@
 package com.apps.szpansky.gitsearch;
 
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.apps.szpansky.gitsearch.dataStructure.DataStructure;
 
