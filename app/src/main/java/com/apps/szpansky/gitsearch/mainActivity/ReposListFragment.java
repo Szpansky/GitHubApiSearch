@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.apps.szpansky.gitsearch.BaseDiffUtils;
 import com.apps.szpansky.gitsearch.R;
 import com.apps.szpansky.gitsearch.dataStructure.DataStructure;
 import com.apps.szpansky.gitsearch.dataStructure.Repo;
@@ -91,10 +93,16 @@ public class ReposListFragment extends SimpleListFragment implements ReposAdapte
         loadingProvider.loadData(new LoadingProvider.CallBack() {
             @Override
             public void onSuccess(List<? extends DataStructure> data) {
+
+                DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new BaseDiffUtils(reposViewModel.getDataList(), (List<DataStructure>) data));
+
                 reposViewModel.getDataList().clear();
                 reposViewModel.getDataList().addAll(data);
 
-                reposViewModel.getAdapter().notifyDataSetChanged();
+                diffResult.dispatchUpdatesTo(reposViewModel.getAdapter());
+
+
+
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }

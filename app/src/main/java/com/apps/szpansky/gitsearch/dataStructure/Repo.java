@@ -1,5 +1,7 @@
 package com.apps.szpansky.gitsearch.dataStructure;
 
+import java.util.Objects;
+
 public class Repo extends DataStructure {
 
     private String name;
@@ -54,4 +56,21 @@ public class Repo extends DataStructure {
         this.html_url = html_url;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Repo repo = (Repo) o;
+        return Objects.equals(name, repo.name) &&
+                Objects.equals(html_url, repo.html_url) &&
+                Objects.equals(owner, repo.owner) &&
+                Objects.equals(stargazers_count, repo.stargazers_count) &&
+                Objects.equals(language, repo.language);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, html_url, owner, stargazers_count, language);
+    }
 }
