@@ -8,13 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.apps.szpansky.gitsearch.R;
 import com.apps.szpansky.gitsearch.dataStructure.DataStructure;
 import com.apps.szpansky.gitsearch.dataStructure.Repo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
@@ -29,10 +28,15 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ViewHolder> 
     Context context;
     RepoAdapterInterface repoAdapterInterface;
 
-
-    public ReposAdapter(List<? extends DataStructure> repoList, RepoAdapterInterface repoAdapterInterface) {
-        this.reposList = (List<Repo>) repoList;
+    public void setRepoAdapterInterface(RepoAdapterInterface repoAdapterInterface) {
         this.repoAdapterInterface = repoAdapterInterface;
+    }
+
+    RequestOptions requestOptions = new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(20));
+
+
+    public ReposAdapter(List<? extends DataStructure> repoList) {
+        this.reposList = (List<Repo>) repoList;
     }
 
 
@@ -72,14 +76,10 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ViewHolder> 
             programmingLanguage.setText(repo.getLanguage());
             programmingLanguage.setSelected(true);
 
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
-
             if (repo.getOwner() != null) {
                 if (repo.getOwner().getAvatarUrl().contains("https")) {
                     Glide.with(context)
                             .load(repo.getOwner().getAvatarUrl())
-                            .transition(DrawableTransitionOptions.withCrossFade(1000))
                             .apply(requestOptions)
                             .into(ownerAvatar);
                 }

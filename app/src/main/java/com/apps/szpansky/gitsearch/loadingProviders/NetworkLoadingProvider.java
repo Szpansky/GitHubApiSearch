@@ -18,9 +18,10 @@ public class NetworkLoadingProvider implements LoadingProvider {
     private String clientID = "private";
     private String clientSecret = "private";
     private String endURL = "&client_id=" + clientID + "&client_secret=" + clientSecret;
+    private RootApi repo;
 
-    @Override
-    public void loadData(final CallBack callBack, @NonNull String query) {
+
+    public NetworkLoadingProvider() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -31,9 +32,11 @@ public class NetworkLoadingProvider implements LoadingProvider {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
+        repo = retrofit.create(RootApi.class);
+    }
 
-        RootApi repo = retrofit.create(RootApi.class);
-
+    @Override
+    public void loadData(final CallBack callBack, @NonNull String query) {
         String urlBuilder;
         if (query.length() == 0) {
             urlBuilder = Constants.siteURL + "search/repositories?q=false+in:private" + endURL;
@@ -46,7 +49,6 @@ public class NetworkLoadingProvider implements LoadingProvider {
             public void onResponse(Call<Repos> call, Response<Repos> response) {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body().getItems());
-                    System.out.println("successs");
                 }
             }
 

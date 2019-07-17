@@ -22,12 +22,6 @@ public abstract class SimpleViewModel extends ViewModel {
         this.fragmentManager = fragmentManager;
     }
 
-
-    public void setAdapter(RecyclerView.Adapter adapter) {
-        this.adapter = adapter;
-    }
-
-
     public void setLayoutManager(StaggeredGridLayoutManager linearLayoutManager) {
         this.linearLayoutManager = linearLayoutManager;
     }

@@ -3,7 +3,6 @@ package com.apps.szpansky.gitsearch.mainActivity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,8 +11,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -34,7 +31,7 @@ import butterknife.OnClick;
 public class ReposListFragment extends SimpleListFragment implements ReposAdapter.RepoAdapterInterface, SearchView.OnQueryTextListener {
 
     public static final String TAG = "ReposListFragment";
-    LoadingProvider loadingProvider;
+    LoadingProvider loadingProvider = new ControlLoadingProvider();
     ReposViewModel reposViewModel;
     Handler handler = new Handler();
     Toast toast;
@@ -68,7 +65,6 @@ public class ReposListFragment extends SimpleListFragment implements ReposAdapte
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadingProvider = new ControlLoadingProvider();
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(reposViewModel.getLayoutManager());
         recyclerView.setAdapter(reposViewModel.getAdapter());
@@ -78,8 +74,6 @@ public class ReposListFragment extends SimpleListFragment implements ReposAdapte
     }
 
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +81,7 @@ public class ReposListFragment extends SimpleListFragment implements ReposAdapte
         reposViewModel = ViewModelProviders.of(this).get(ReposViewModel.class);
         reposViewModel.setFragmentManager(getFragmentManager());
         reposViewModel.setLayoutManager(getLayoutManager());
-        reposViewModel.setAdapter(new ReposAdapter(reposViewModel.getDataList(), this));
+        ((ReposAdapter) reposViewModel.getAdapter()).setRepoAdapterInterface(this);
     }
 
 
@@ -146,8 +140,6 @@ public class ReposListFragment extends SimpleListFragment implements ReposAdapte
         queryStatement = query;
         return true;
     }
-
-
 
 
     @Override

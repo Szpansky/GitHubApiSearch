@@ -2,13 +2,11 @@ package com.apps.szpansky.gitsearch.mainActivity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.apps.szpansky.gitsearch.Constants;
 import com.apps.szpansky.gitsearch.R;
 import com.apps.szpansky.gitsearch.simples.SimpleActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends SimpleActivity {
@@ -36,6 +34,7 @@ public class MainActivity extends SimpleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         if (savedInstanceState == null) {
