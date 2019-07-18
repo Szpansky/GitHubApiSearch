@@ -13,13 +13,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.apps.szpansky.gitsearch.Constants.clientID;
+import static com.apps.szpansky.gitsearch.Constants.clientSecret;
+
 public class NetworkLoadingProvider implements LoadingProvider {
 
-    private String clientID = "private";
-    private String clientSecret = "private";
-    private String endURL = "&client_id=" + clientID + "&client_secret=" + clientSecret;
     private RootApi repo;
-
 
     public NetworkLoadingProvider() {
 
@@ -37,14 +36,7 @@ public class NetworkLoadingProvider implements LoadingProvider {
 
     @Override
     public void loadData(final CallBack callBack, @NonNull String query) {
-        String urlBuilder;
-        if (query.length() == 0) {
-            urlBuilder = Constants.siteURL + "search/repositories?q=false+in:private" + endURL;
-        } else {
-            urlBuilder = Constants.siteURL + "search/repositories?q=" + query + "+in:name" + endURL;
-        }
-
-        repo.reposData(urlBuilder).enqueue(new Callback<Repos>() {
+        repo.searchRepos(query + "in:name", clientID, clientSecret).enqueue(new Callback<Repos>() {
             @Override
             public void onResponse(Call<Repos> call, Response<Repos> response) {
                 if (response.isSuccessful()) {
